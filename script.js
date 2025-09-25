@@ -192,29 +192,33 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 
   // =======================
-  // Fetch reviews from Google Sheet (published as CSV/JSON)
-  // =======================
-  async function fetchReviews() {
-    try {
-      // Example URL: publish your Google Sheet (File > Publish to web > CSV link)
-      const sheetURL = "https://docs.google.com/forms/d/e/1FAIpQLSdSG2Qcg6XdsNWKlDw9k7D6kYzcVG-pI-JGXdq0_ikfBV2zNA/viewform?usp=header";
-      const response = await fetch(sheetURL);
-      const text = await response.text();
+// Fetch reviews from Google Sheet (published as CSV)
+// =======================
+async function fetchReviews() {
+  try {
+    // ⚠️ Replace with your actual published CSV URL from the linked Google Sheet
+    const sheetURL = "https://docs.google.com/spreadsheets/d/e/YOUR_SHEET_ID/pub?output=csv";
 
-      // Assuming CSV format, parse rows
-      const rows = text.split("\n").slice(1); // skip header
-      const reviews = rows.map(r => {
+    const response = await fetch(sheetURL);
+    const text = await response.text();
+
+    // Parse CSV rows
+    const rows = text.split("\n").slice(1); // skip header row
+    const reviews = rows
+      .filter(r => r.trim().length > 0) // skip empty lines
+      .map(r => {
         const cols = r.split(",");
-        return { name: cols[0], comment: cols[1] }; // adjust to your sheet structure
+        return { name: cols[0]?.trim(), comment: cols[1]?.trim() };
       });
 
-      if (reviewsGrid) {
-        reviewsGrid.innerHTML = reviews.map(createReviewItem).join('');
-      }
-    } catch (error) {
-      console.error("Error fetching reviews:", error);
+    if (reviewsGrid) {
+      reviewsGrid.innerHTML = reviews.map(createReviewItem).join('');
     }
+  } catch (error) {
+    console.error("Error fetching reviews:", error);
   }
+}
 
-  fetchReviews();
-});
+fetchReviews();
+
+
