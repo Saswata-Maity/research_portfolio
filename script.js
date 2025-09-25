@@ -167,58 +167,72 @@ document.addEventListener("DOMContentLoaded", function() {
     certificationsGrid.innerHTML = certifications.map(createCertificationItem).join('');
   }
 
-  // =======================
-  // Reviews Section
-  // =======================
-  const reviewsGrid = document.getElementById('reviews-grid');
-  const addReviewBtn = document.createElement('button');
-  addReviewBtn.textContent = "➕ Add Review";
-  addReviewBtn.classList.add("btn");
-  if (reviewsGrid) {
-    reviewsGrid.before(addReviewBtn);
+ // =======================
+// Reviews Section
+// =======================
+const reviewsGrid = document.getElementById('reviews-grid');
+
+// Create "Add Review" button
+const addReviewBtn = document.createElement('button');
+addReviewBtn.textContent = "➕ Add Review";
+addReviewBtn.classList.add("btn");
+
+// Insert button above reviews grid
+if (reviewsGrid) {
+  reviewsGrid.before(addReviewBtn);
+}
+
+// Click handler for Add Review
+addReviewBtn.addEventListener("click", function() {
+  const userId = prompt("Enter Reviewer ID:");
+  const userPass = prompt("Enter Password:");
+
+  // Replace these with your actual credentials
+  if (userId === "reviewer" && userPass === "1234") {
+    // Open Google Form in new tab
+    window.open(
+      "https://docs.google.com/forms/d/e/1FAIpQLSdSG2Qcg6XdsNWKlDw9k7D6kYzcVG-pI-JGXdq0_ikfBV2zNA/viewform",
+      "_blank"
+    );
+  } else {
+    alert("Invalid credentials. Access denied.");
   }
+});
 
-  addReviewBtn.addEventListener("click", function() {
-    const userId = prompt("Enter Reviewer ID:");
-    const userPass = prompt("Enter Password:");
-
-    // Replace with your actual credentials
-    if (userId === "reviewer" && userPass === "1234") {
-      // Redirect to Google Form
-      window.open("YOUR_GOOGLE_FORM_LINK_HERE", "_blank");
-    } else {
-      alert("Invalid credentials. Access denied.");
-    }
-  });
-
-  // =======================
-// Fetch reviews from Google Sheet (published as CSV)
+// =======================
+// Fetch reviews from Google Sheet (published CSV)
 // =======================
 async function fetchReviews() {
   try {
-    // ⚠️ Replace with your actual published CSV URL from the linked Google Sheet
+    // ⚠️ Replace with your actual published CSV URL
     const sheetURL = "https://docs.google.com/spreadsheets/d/e/YOUR_SHEET_ID/pub?output=csv";
 
     const response = await fetch(sheetURL);
     const text = await response.text();
 
-    // Parse CSV rows
-    const rows = text.split("\n").slice(1); // skip header row
+    // Parse CSV rows (skip header)
+    const rows = text.split("\n").slice(1);
+
     const reviews = rows
       .filter(r => r.trim().length > 0) // skip empty lines
       .map(r => {
         const cols = r.split(",");
-        return { name: cols[0]?.trim(), comment: cols[1]?.trim() };
+        return { name: cols[0]?.trim() || "Anonymous", comment: cols[1]?.trim() || "" };
       });
 
+    // Render reviews in grid
     if (reviewsGrid) {
-      reviewsGrid.innerHTML = reviews.map(createReviewItem).join('');
+      reviewsGrid.innerHTML = reviews.length
+        ? reviews.map(createReviewItem).join('')
+        : "<p>No reviews yet. Be the first to add one!</p>";
     }
   } catch (error) {
     console.error("Error fetching reviews:", error);
+    if (reviewsGrid) {
+      reviewsGrid.innerHTML = "<p>Failed to load reviews. Please try again later.</p>";
+    }
   }
 }
 
+// Call function to fetch reviews on page load
 fetchReviews();
-
-
