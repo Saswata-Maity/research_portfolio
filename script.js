@@ -1,6 +1,6 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
   // =======================
-  // Particles.js
+  // Particles.js Initialization
   // =======================
   particlesJS("particles-js", {
     particles: {
@@ -14,118 +14,129 @@ document.addEventListener("DOMContentLoaded", function() {
         distance: 150,
         color: "#4db6ac",
         opacity: 0.4,
-        width: 1
+        width: 1,
       },
-      move: { enable: true, speed: 2, direction: "none", random: false, straight: false, out_mode: "out", bounce: false }
+      move: {
+        enable: true,
+        speed: 2,
+        direction: "none",
+        random: false,
+        straight: false,
+        out_mode: "out",
+        bounce: false,
+      },
     },
     interactivity: {
       detect_on: "canvas",
-      events: { onhover: { enable: true, mode: "repulse" }, onclick: { enable: true, mode: "push" }, resize: true },
-      modes: { repulse: { distance: 100, duration: 0.4 }, push: { particles_nb: 4 } }
+      events: {
+        onhover: { enable: true, mode: "repulse" },
+        onclick: { enable: true, mode: "push" },
+        resize: true,
+      },
+      modes: {
+        repulse: { distance: 100, duration: 0.4 },
+        push: { particles_nb: 4 },
+      },
     },
-    retina_detect: true
+    retina_detect: true,
   });
 
   // =======================
-  // Leaflet map
+  // Leaflet Map
   // =======================
-  var map = L.map('map').setView([22.5726, 88.3639], 4);
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+  const map = L.map("map").setView([22.5726, 88.3639], 4);
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
   }).addTo(map);
-  L.marker([22.5726, 88.3639]).addTo(map)
-    .bindPopup('Kolkata, India')
+  L.marker([22.5726, 88.3639])
+    .addTo(map)
+    .bindPopup("Kolkata, India")
     .openPopup();
 
   // =======================
-  // Smooth scrolling
+  // Smooth Scrolling
   // =======================
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener("click", function (e) {
       e.preventDefault();
-      let target = document.querySelector(this.getAttribute('href'));
-      if (target) {
-        target.scrollIntoView({ behavior: 'smooth' });
-      }
+      const target = document.querySelector(this.getAttribute("href"));
+      if (target) target.scrollIntoView({ behavior: "smooth" });
     });
   });
 
   // =======================
-  // Data for projects
+  // Data for Projects & Certifications
   // =======================
   const projects = [
     {
       title: "Dynamic Flight Pricing",
       description: "Processed 500 synthetic data for flight booking and user records, optimizing Decision Tree Regressor with 99.97% accuracy.",
-      link: "https://github.com/saswata-maity/Dynamic-Flight-Pricing"
+      link: "https://github.com/saswata-maity/Dynamic-Flight-Pricing",
     },
     {
       title: "Credit Card Fraud Analysis",
       description: "Detailed analysis of fraudulent transactions by credit card for corresponding companies using MySQL.",
-      link: "https://github.com/Saswata-Maity/fraud-transactions"
+      link: "https://github.com/Saswata-Maity/fraud-transactions",
     },
     {
       title: "Heart Attack Prediction App",
       description: "Web app developed using Kaggle dataset to determine if a person has a high or low chance of heart attack.",
-      link: "https://heartattackpred-webapp.onrender.com/"
+      link: "https://heartattackpred-webapp.onrender.com/",
     },
     {
       title: "Crop Disease Prediction",
-      description: "Web app to classify plant disease type with 99.01% accuracy and 98.65% confidence. Used a separable convolutional self-built architecture for identifying complex patterns.",
-      link: "https://crop-disease-prediction-1kel.onrender.com/"
-    }
+      description: "Web app to classify plant disease type with 99.01% accuracy and 98.65% confidence using a separable convolutional architecture.",
+      link: "https://crop-disease-prediction-1kel.onrender.com/",
+    },
   ];
 
-  // =======================
-  // Data for certifications
-  // =======================
   const certifications = [
     {
       title: "Google Data Analytics",
       issuer: "Coursera",
       date: "November 13, 2023",
-      link: "https://coursera.org/share/2bfddd8df47a60e1fe600e07e707e2eb"
+      link: "https://coursera.org/share/2bfddd8df47a60e1fe600e07e707e2eb",
     },
     {
       title: "Google IT Crash Course on Python",
       issuer: "Coursera",
       date: "June 6, 2023",
-      link: "https://coursera.org/share/7c205309f91a772e9eb30045ebfa8197"
+      link: "https://coursera.org/share/7c205309f91a772e9eb30045ebfa8197",
     },
     {
       title: "SQL Intermediate",
       issuer: "HackerRank",
       date: "September 14, 2023",
-      link: "https://www.hackerrank.com/certificates/fec12e2f45e5"
+      link: "https://www.hackerrank.com/certificates/fec12e2f45e5",
     },
     {
       title: "SQL TOP 50 BADGE (Leet Code)",
       issuer: "LEETCODE",
       date: "April 16, 2024",
-      link: "https://leetcode.com/medal/?showImg=0&id=3182394&isLevel=false"
+      link: "https://leetcode.com/medal/?showImg=0&id=3182394&isLevel=false",
     },
     {
       title: "Machine Learning Specialization",
       issuer: "Coursera (By Deeplearning.Ai)",
       date: "April 16, 2024",
-      link: "https://coursera.org/share/7cbe07f39b3058ce14938bf56e53449d"
+      link: "https://coursera.org/share/7cbe07f39b3058ce14938bf56e53449d",
     },
     {
       title: "Deep Learning Specialization",
       issuer: "Coursera (By Deeplearning.Ai)",
       date: "February 1, 2025",
-      link: "https://coursera.org/share/bf183daa93e360a34bcaf1c8399586df"
+      link: "https://coursera.org/share/bf183daa93e360a34bcaf1c8399586df",
     },
     {
       title: "Tensorflow Developer",
       issuer: "Coursera (By Deeplearning.Ai)",
       date: "March 10, 2025",
-      link: "https://coursera.org/share/b67546723ee35958347a919f7dd768ec"
-    }
+      link: "https://coursera.org/share/b67546723ee35958347a919f7dd768ec",
+    },
   ];
 
   // =======================
-  // Functions to render items
+  // Render Functions
   // =======================
   function createProjectItem(project) {
     return `
@@ -156,83 +167,65 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
   // =======================
-  // Populate projects & certifications
+  // Populate Projects & Certifications
   // =======================
-  const projectsGrid = document.getElementById('projects-grid');
-  if (projectsGrid) {
-    projectsGrid.innerHTML = projects.map(createProjectItem).join('');
+  const projectsGrid = document.getElementById("projects-grid");
+  if (projectsGrid) projectsGrid.innerHTML = projects.map(createProjectItem).join("");
+
+  const certificationsGrid = document.getElementById("certifications-grid");
+  if (certificationsGrid) certificationsGrid.innerHTML = certifications.map(createCertificationItem).join("");
+
+  // =======================
+  // Reviews Section
+  // =======================
+  const reviewsGrid = document.getElementById("reviews-grid");
+
+  // Create "Add Review" button
+  const addReviewBtn = document.createElement("button");
+  addReviewBtn.textContent = "➕ Add Review";
+  addReviewBtn.classList.add("btn");
+  if (reviewsGrid) reviewsGrid.before(addReviewBtn);
+
+  // Add Review Click
+  addReviewBtn.addEventListener("click", () => {
+    const userId = prompt("Enter Reviewer ID:");
+    const userPass = prompt("Enter Password:");
+
+    if (userId === "reviewer" && userPass === "1234") {
+      window.open(
+        "https://docs.google.com/forms/d/e/1FAIpQLSdSG2Qcg6XdsNWKlDw9k7D6kYzcVG-pI-JGXdq0_ikfBV2zNA/viewform",
+        "_blank"
+      );
+    } else {
+      alert("Invalid credentials. Access denied.");
+    }
+  });
+
+  // Fetch Reviews from Published CSV
+  async function fetchReviews() {
+    try {
+      const sheetURL = "https://docs.google.com/spreadsheets/d/e/YOUR_SHEET_ID/pub?output=csv";
+      const response = await fetch(sheetURL);
+      const text = await response.text();
+
+      const rows = text.split("\n").slice(1);
+      const reviews = rows
+        .filter((r) => r.trim().length > 0)
+        .map((r) => {
+          const cols = r.split(",");
+          return { name: cols[0]?.trim() || "Anonymous", comment: cols[1]?.trim() || "" };
+        });
+
+      if (reviewsGrid) {
+        reviewsGrid.innerHTML = reviews.length
+          ? reviews.map(createReviewItem).join("")
+          : "<p>No reviews yet. Be the first to add one!</p>";
+      }
+    } catch (error) {
+      console.error("Error fetching reviews:", error);
+      if (reviewsGrid) reviewsGrid.innerHTML = "<p>Failed to load reviews. Please try again later.</p>";
+    }
   }
-  const certificationsGrid = document.getElementById('certifications-grid');
-  if (certificationsGrid) {
-    certificationsGrid.innerHTML = certifications.map(createCertificationItem).join('');
-  }
 
- // =======================
-// Reviews Section
-// =======================
-const reviewsGrid = document.getElementById('reviews-grid');
-
-// Create "Add Review" button
-const addReviewBtn = document.createElement('button');
-addReviewBtn.textContent = "➕ Add Review";
-addReviewBtn.classList.add("btn");
-
-// Insert button above reviews grid
-if (reviewsGrid) {
-  reviewsGrid.before(addReviewBtn);
-}
-
-// Click handler for Add Review
-addReviewBtn.addEventListener("click", function() {
-  const userId = prompt("Enter Reviewer ID:");
-  const userPass = prompt("Enter Password:");
-
-  // Replace these with your actual credentials
-  if (userId === "reviewer" && userPass === "1234") {
-    // Open Google Form in new tab
-    window.open(
-      "https://docs.google.com/forms/d/e/1FAIpQLSdSG2Qcg6XdsNWKlDw9k7D6kYzcVG-pI-JGXdq0_ikfBV2zNA/viewform",
-      "_blank"
-    );
-  } else {
-    alert("Invalid credentials. Access denied.");
-  }
+  fetchReviews();
 });
-
-// =======================
-// Fetch reviews from Google Sheet (published CSV)
-// =======================
-async function fetchReviews() {
-  try {
-    // ⚠️ Replace with your actual published CSV URL
-    const sheetURL = "https://docs.google.com/spreadsheets/d/e/YOUR_SHEET_ID/pub?output=csv";
-
-    const response = await fetch(sheetURL);
-    const text = await response.text();
-
-    // Parse CSV rows (skip header)
-    const rows = text.split("\n").slice(1);
-
-    const reviews = rows
-      .filter(r => r.trim().length > 0) // skip empty lines
-      .map(r => {
-        const cols = r.split(",");
-        return { name: cols[0]?.trim() || "Anonymous", comment: cols[1]?.trim() || "" };
-      });
-
-    // Render reviews in grid
-    if (reviewsGrid) {
-      reviewsGrid.innerHTML = reviews.length
-        ? reviews.map(createReviewItem).join('')
-        : "<p>No reviews yet. Be the first to add one!</p>";
-    }
-  } catch (error) {
-    console.error("Error fetching reviews:", error);
-    if (reviewsGrid) {
-      reviewsGrid.innerHTML = "<p>Failed to load reviews. Please try again later.</p>";
-    }
-  }
-}
-
-// Call function to fetch reviews on page load
-fetchReviews();
