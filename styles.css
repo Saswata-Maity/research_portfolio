@@ -2,7 +2,7 @@
 
 /* ---------- Variables ---------- */
 :root {
-  --bg: #f8f8f8;
+  --bg: #ffffff;             /* White background */
   --card: #ffffff;
   --accent: #4db6ac;
   --dark: #333333;
@@ -23,64 +23,73 @@
 }
 html, body {
   height: 100%;
+  margin: 0;
+  padding: 0;
   font-family: var(--font-sans);
   background: var(--bg);
   color: var(--dark);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+body {
+  padding-top: var(--header-height); /* space for fixed navbar */
+}
 .container {
   max-width: var(--max-width);
   margin: 0 auto;
   padding: 18px;
 }
-body { padding-top: var(--header-height); }
 
-/* ---------- Particles ---------- */
-#particles-js {
-  position: fixed;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  background-color: var(--bg);
-  z-index: -1;
-  pointer-events: none;
-}
-
-/* ---------- Header ---------- */
-header {
+/* ---------- Navbar ---------- */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: var(--header-height);
+  padding: 0 20px;
+  background: rgba(255,255,255,0.96); /* glass effect */
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid rgba(0,0,0,0.06);
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  height: var(--header-height);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 18px;
-  background: rgba(248,248,248,0.96);
-  backdrop-filter: blur(6px);
-  border-bottom: 1px solid rgba(0,0,0,0.06);
   z-index: 1000;
+  box-shadow: 0 2px 6px var(--shadow);
 }
-.home-link {
-  color: var(--accent);
+
+/* Left side (brand / home) */
+.navbar-left a {
+  margin-right: 20px;
   text-decoration: none;
-  font-weight: 700;
+  color: var(--accent);
+  font-weight: bold;
   letter-spacing: 0.6px;
   transition: var(--transition);
 }
-.home-link:hover { color: var(--dark); }
+.navbar-left a:hover {
+  color: var(--dark);
+}
 
+/* Hamburger button */
+.menu-toggle {
+  background: none;
+  border: none;
+  color: var(--accent);
+  font-size: 24px;
+  cursor: pointer;
+  display: none; /* hidden on desktop */
+}
+
+/* Nav links */
 .main-nav ul {
-  list-style: none;
   display: flex;
-  gap: 18px;
-  align-items: center;
+  gap: 20px;
+  list-style: none;
 }
 .main-nav a {
-  color: var(--accent);
   text-decoration: none;
+  color: var(--accent);
   text-transform: uppercase;
   font-size: 13px;
   padding: 8px 10px;
@@ -95,16 +104,17 @@ header {
 /* ---------- Sections ---------- */
 section {
   min-height: calc(100vh - var(--header-height));
-  margin-top: 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: clamp(56px, 8vw, 96px) 20px;
   text-align: center;
+  position: relative;
+  z-index: 10; /* keep above particles */
 }
 
-/* Hero */
+/* ---------- Hero ---------- */
 #home { text-align: center; }
 .logo {
   font-size: clamp(28px, 4vw, 40px);
@@ -122,17 +132,23 @@ section {
 }
 
 /* Social icons */
-.social-icons a {
+.social-icons, .socials-hero {
+  margin: 14px 0;
+}
+.social-icons a, .socials-hero a {
   color: var(--dark);
   font-size: 20px;
   margin: 0 8px;
   text-decoration: none;
   transition: var(--transition);
 }
-.social-icons a:hover { color: var(--accent); transform: translateY(-2px); }
+.social-icons a:hover, .socials-hero a:hover {
+  color: var(--accent);
+  transform: translateY(-2px);
+}
 
 /* Hero text + buttons */
-.intro-text {
+.intro-text, .hero-sub {
   max-width: 760px;
   margin: 10px auto;
   color: #23333a;
@@ -159,27 +175,23 @@ section {
 }
 
 /* ---------- Grids / Cards ---------- */
-.website-grid, .cert-grid, .research-grid, .reviews-grid {
+.website-grid, .cert-grid, .research-grid, .grid-3 {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 24px;
   width: 100%;
   max-width: var(--max-width);
 }
-.website-item, .cert-item, .research-item, .review-item {
+.website-item, .cert-item, .research-item, .card {
   background: var(--card);
   padding: 18px;
   border-radius: var(--radius);
   box-shadow: 0 6px 18px var(--shadow);
   transition: var(--transition);
-  text-align: left;
 }
-.website-item:hover, .cert-item:hover, .research-item:hover, .review-item:hover {
+.website-item:hover, .cert-item:hover, .research-item:hover, .card:hover {
   transform: translateY(-4px);
   box-shadow: 0 10px 24px var(--shadow);
-}
-.review-item {
-  border-left: 4px solid var(--accent);
 }
 
 /* ---------- Map ---------- */
@@ -203,38 +215,262 @@ section {
   column-gap: 28px;
 }
 
-/* ---------- Footer ---------- */
-.footer {
-  background: var(--bg);
-  padding: 20px;
-  text-align: center;
+/* ---------- Reviews ---------- */
+#reviews {
+  min-height: 50vh;
+  padding: clamp(48px,6vw,80px) 20px;
+  background: transparent;
   border-top: 1px solid rgba(0,0,0,0.03);
 }
+.reviews-grid {
+  max-width: 700px;
+  margin: 20px auto;
+  text-align: left;
+}
+.review-item {
+  background: #f8f8f8;
+  padding: 14px 18px;
+  margin-bottom: 14px;
+  border-left: 4px solid var(--accent);
+  border-radius: 6px;
+}
+
+/* ---------- Footer ---------- */
+/* Strong, reliable centering for your footer */
+.footer {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 20px 16px;
+  background: #fff;           /* change if needed */
+  display: flex;
+  flex-direction: column;     /* stack icons + text */
+  align-items: center;        /* center horizontally */
+  justify-content: center;    /* center vertically within footer */
+  text-align: center;
+  clear: both;                /* prevents float-related shifting */
+}
+
+/* center the icon row */
+.social-icons-footer {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+/* icons / links */
 .social-icons-footer a {
-  color: var(--dark);
-  font-size: 18px;
-  margin: 0 8px;
+  margin: 0;
+  font-size: 1.3rem;
+  color: #333;
   text-decoration: none;
-  transition: var(--transition);
 }
-.social-icons-footer a:hover { color: var(--accent); }
+
+/* footer text lines */
 .footer-text {
-  color: var(--muted);
-  font-size: 14px;
-  margin-top: 8px;
+  margin: 4px 0;
+  font-size: 0.95rem;
+  color: #666;
 }
+
+/* links inside footer text */
+.footer-text a {
+  color: inherit;
+  text-decoration: none;
+  margin: 0 6px;
+}
+
+/* OPTIONAL: keep footer content constrained and centered on wide screens */
+.footer .footer-inner {
+  max-width: 1100px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 12px;
+}
+
+
 
 /* ---------- Responsive Tweaks ---------- */
 @media (max-width: 860px) {
   .skills-list { columns: 1; }
   .intro-text { padding: 0 8px; }
   .container { padding: 12px; }
-  header { padding: 0 12px; }
-  .main-nav ul { flex-wrap: wrap; gap: 10px; }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .main-nav {
+    display: none;
+    position: absolute;
+    top: var(--header-height);
+    right: 20px;
+    background: var(--card);
+    border-radius: var(--radius);
+    box-shadow: 0 6px 18px var(--shadow);
+    width: 220px;
+    z-index: 1000;
+  }
+  .main-nav ul {
+    flex-direction: column;
+    margin: 0;
+    padding: 10px 0;
+  }
+  .main-nav li {
+    text-align: center;
+  }
+  .main-nav a {
+    display: block;
+    padding: 10px;
+    color: var(--dark);
+  }
+  .main-nav.show {
+    display: block;
+  }
 }
 
 /* ---------- Accessibility ---------- */
 a:focus, button:focus, input:focus, textarea:focus {
   outline: 3px solid rgba(77,182,172,0.25);
   outline-offset: 2px;
+}
+
+/* ---------- Background particles ---------- */
+#particles-js {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;        /* behind content */
+  pointer-events: auto; /* keep interactive */
+}
+
+/* ---------- Typography tweaks ---------- */
+p {
+  text-align: justify;
+  margin: 15px auto;
+  line-height: 1.6;
+  max-width: 900px;
+}
+h2 {
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 20px;
+  font-size: 2rem;
+  letter-spacing: 1px;
+}
+h3 {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+/* ---------- Ongoing Works Section ---------- */
+#ongoing-works {
+  position: relative;
+  padding: 60px 20px;
+  background: transparent; /* transparent background */
+  text-align: center;
+  z-index: 1; /* keeps it above particles */
+}
+
+#ongoing-works h2 {
+  font-size: 2rem;
+  margin-bottom: 25px;
+  color: var(--dark);
+}
+
+.works-list {
+  list-style-type: disc;
+  max-width: 800px;
+  margin: 0 auto;
+  padding-left: 20px;
+  text-align: left;
+  color: var(--dark);
+}
+
+.works-list li {
+  font-size: 1.05rem;
+  margin-bottom: 20px;
+  padding: 18px;
+  border-left: 3px solid var(--accent);
+  background: #fff; /* translucent floating box */
+  border-radius: var(--radius);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Status Tags */
+.status-tag {
+  padding: 6px 12px;
+  border-radius: var(--radius);
+  font-size: 0.9rem;
+  font-weight: 600;
+  min-width: 95px;
+  text-align: center;
+  box-shadow: 0 2px 6px var(--shadow);
+}
+
+.status-tag.ongoing {
+  background: var(--accent);
+  color: #fff;
+}
+
+.status-tag.completed {
+  background: rgba(204, 204, 204, 0.8);
+  color: #333;
+}
+
+
+/* ---------- Experience Section ---------- */
+#experience {
+  position: relative;
+  background: transparent; /* blends with background */
+  padding: 60px 20px;
+  color: var(--dark); /* or white if you want brighter text */
+  z-index: 1; /* ensures it floats above particles */
+  text-align: left;
+}
+
+#experience h2 {
+  font-size: 2rem;
+  margin-bottom: 30px;
+  text-align: center;
+  color: var(--dark);
+}
+
+.experience-item {
+  margin-bottom: 40px;
+  padding: 20px;
+  border-left: 3px solid var(--accent);
+  background: #fff; /* very light transparent box */
+  border-radius: var(--radius);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.experience-item h3 {
+  margin: 0;
+  font-size: 1.3rem;
+  color: var(--accent);
+}
+
+.experience-item p {
+  margin: 8px 0;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+.supervisors {
+  display: flex;
+  flex-wrap: wrap;   /* allows stacking on small screens */
+  gap: 12px;         /* spacing between names */
+  margin-top: 6px;
+}
+
+.supervisors span {
+  display: inline-block;
+  color: var(--dark);
 }
