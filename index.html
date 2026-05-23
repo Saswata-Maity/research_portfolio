@@ -1,249 +1,461 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Saswata Maity Portfolio</title>
-
-  <!-- External CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/>
-  <link rel="stylesheet" href="styles.css">
-
-  <style>
-    /* Canvas background only for homepage */
-    #nnCanvas {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1; /* behind content */
-      background: transparent;
-    }
-    #home {
-      position: relative;
-      overflow: hidden;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#06090f">
+<title>Saswata Maity — The Scholar's Chronicle</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Cinzel+Decorative:wght@400;700&family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <!-- Particles Background -->
-  <div id="particles-js"></div>
 
-  <!-- Navbar -->
-  <header class="navbar">
-    <div class="navbar-left">
-      <a href="#home" class="home-link">HOME</a>
-      <a href="#intro" class="home-link">INTRO</a>
+<canvas id="starfield"></canvas>
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+<div id="progress"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-logo">✦ Scholar</div>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+  <ul id="navMenu">
+    <li><a href="#skills" class="nav-link">Skills</a></li>
+    <li><a href="#education" class="nav-link">Education</a></li>
+    <li><a href="#research" class="nav-link">Research</a></li>
+    <li><a href="#projects" class="nav-link">Projects</a></li>
+    <li><a href="#hobbies" class="nav-link">Hobbies</a></li>
+    <li><a href="#contact" class="nav-link">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero" id="hero">
+  <div class="hero-orb"></div>
+  <div class="emblem" id="heroEmblem">
+    <div class="ring"></div><div class="ring"></div><div class="ring"></div>
+    <div class="emblem-core">⬡</div>
+  </div>
+  <p class="eyebrow" id="heroEyebrow">Welcome, Traveler</p>
+  <h1 class="hero-title" id="heroTitle">Saswata Maity</h1>
+  <p class="hero-sub" id="heroSub">Computer Vision · Deep Learning · AI Research</p>
+  <p class="hero-desc" id="heroDesc">A scholar of visual intelligence, weaving the arcane arts of deep learning, GANs, and diffusion models into solutions that bridge the frontier of research and the real world.</p>
+  <div class="hero-socials" id="heroSocials">
+    <a href="https://github.com/saswata-maity" target="_blank" rel="noreferrer">GitHub</a>
+    <a href="https://linkedin.com/in/saswata-maity" target="_blank" rel="noreferrer">LinkedIn</a>
+    <a href="mailto:saswata.work.data@gmail.com">Mail</a>
+    <a href="https://x.com/" target="_blank" rel="noreferrer">Twitter</a>
+  </div>
+  <div class="cta" id="heroCta">
+    <a href="#research" class="btn btn-fill">View Research</a>
+    <a href="#contact" class="btn btn-ghost">Collaborate</a>
+  </div>
+  <div class="scroll-hint"><span>Scroll</span><div class="scroll-arrow"></div></div>
+</div>
+
+<div class="divider" data-fly="up">
+  <div class="d-line"></div><div class="d-gem"></div><div class="d-line"></div>
+</div>
+
+<!-- INTRO BANNER -->
+<div class="banner">
+  <div class="banner-glow"></div>
+  <p class="bq" data-fly="up">"Every model parameter reduced is a step closer to clarity — efficiency and elegance are not opposites, they are the same truth."</p>
+  <p class="ba" data-fly="up" data-delay="2">— Saswata Maity, Computer Vision Researcher</p>
+</div>
+
+<div class="divider" data-fly="up">
+  <div class="d-line"></div><div class="d-gem"></div><div class="d-line"></div>
+</div>
+
+<!-- SKILLS -->
+<div id="skills">
+<div class="section-wrap">
+  <div class="section-head">
+    <p class="s-label" data-fly="up" data-delay="1">Technical Arsenal</p>
+    <h2 class="s-title" data-fly="up" data-delay="2">The Scholar's Disciplines</h2>
+    <p class="s-intro" data-fly="up" data-delay="3">Forged through years of research and experimentation — a toolkit spanning deep learning, computer vision, and the frontiers of generative AI.</p>
+  </div>
+  <div class="el-grid">
+    <div class="el-card" style="--c:var(--violet)" data-fly="scale" data-delay="1">
+      <span class="el-icon">🧠</span>
+      <div class="el-name">Deep Learning</div>
+      <div class="el-items">TensorFlow · Keras · Custom Layers · Loss Functions · Branched NNs</div>
     </div>
-    <button class="menu-toggle" aria-label="Toggle menu">
-      <i class="fas fa-bars"></i>
-    </button>
-    <nav class="main-nav">
-      <ul>
-        <li><a href="#skills">SKILLS</a></li>
-        <li><a href="#certifications">CERTIFICATIONS</a></li>
-        <li><a href="#education">EDUCATION</a></li>
-        <li><a href="#ongoing-works">ONGOING RESEARCH</a></li>
-        <li><a href="#experience">EXPERIENCE</a></li>
-        <li><a href="#research-papers">RESEARCH PAPERS</a></li>
-        <li><a href="#reviews">REVIEWS</a></li>
-        <li><a href="#projects">PROJECTS</a></li>
-        <li><a href="#contact">CONTACT</a></li>
-      </ul>
-    </nav>
-  </header>
-
-  <!-- Home -->
-  <section id="home">
-    <!-- CNN Particles Canvas -->
-    <canvas id="nnCanvas"></canvas>
-
-    <div class="logo">SASWATA <span></span> MAITY</div>
-    <div class="social-icons">
-      <a href="#"><i class="fab fa-twitter"></i></a>
-      <a href="https://github.com/saswata-maity" target="_blank"><i class="fab fa-github"></i></a>
-      <a href="https://linkedin.com/in/saswata-maity" target="_blank"><i class="fab fa-linkedin"></i></a>
+    <div class="el-card" style="--c:var(--teal)" data-fly="scale" data-delay="2">
+      <span class="el-icon">👁</span>
+      <div class="el-name">Computer Vision</div>
+      <div class="el-items">2D · 3D · OpenCV · Image Segmentation · Classification</div>
     </div>
-    <p>
-      Hellow, and welcome to my profile! I specialize in <strong>Computer Vision</strong> and related tasks in the field of Artificial Intelligence. 
-      I am passionate about exploring new techniques, methods, 
-      and innovations that push the boundaries of visual intelligence and machine learning.
-    </p>
-    <p>
-      My current interests include the application of Computer Vision in the <strong>medical domain</strong>, where I aim to simplify complex 
-      computations and automate tasks that can enhance diagnostic efficiency and support healthcare solutions. Additionally, I am fascinated 
-      by the creative and generative potential of modern AI, particularly in <strong>Generative Adversarial Networks </strong>,<strong>3D Computer Vision</strong>,
-      <strong>Vision Language Models</strong> and <strong>Diffusion Models</strong>.
-    </p>
-    <p>
-      Driven by curiosity and continuous learning, I enjoy bridging theory with practice, developing models that are not only innovative 
-      but also efficient and impactful in solving real-world problems.  
-    </p>
-
-    <div>
-      <a href="#" class="btn">SUBSCRIBE</a>
-      <a href="#contact" class="btn">CONTACT</a>
+    <div class="el-card" style="--c:var(--coral)" data-fly="scale" data-delay="3">
+      <span class="el-icon">🔮</span>
+      <div class="el-name">Generative AI</div>
+      <div class="el-items">GANs · Diffusion Models · Vision Language Models</div>
     </div>
-  </section>
-
-  <!-- Intro -->
-  <section id="intro">
-    <h2>Introduction</h2>
-    <p>
-      I am a <strong>Computer Vision enthusiast</strong> with a strong background in <strong>Deep Learning models</strong>. 
-      My focus lies in exploring ways to maintain high accuracy while reducing model parameters and computational costs, 
-      thereby creating efficient and scalable AI solutions. I am always open to collaborations and open discussions realted to aby new ideas or proposals.
-    </p>
-    <p>
-      I specialize in <strong>TensorFlow</strong>, <strong>Branched Neural Networks</strong>, and the design of 
-      <strong>Custom Layers </strong>and <strong>Loss Functions</strong>. I am constantly learning, experimenting, and developing new 
-      model architectures to address diverse challenges in AI.
-    </p>
-    <p>
-      In addition to Computer Vision, I also have a strong interest and foundational knowledge in 
-      <strong>Natural Language Processing </strong>, which broadens my ability to work across multiple domains 
-      within Artificial Intelligence.
-    </p>
-  </section>
-
-  <!-- Skills -->
-  <section id="skills">
-    <h2>Technical Skills</h2>
-    <div class="skills-list">
-      <p><strong>Languages:</strong> Python, R</p>
-      <p><strong>Libraries:</strong> Tensorflow (Proficient), Keras (backend), Numpy, Pandas, Matplotlib, Seaborn, OpenCV, Scikit-learn</p>
-      <p><strong>Developer Tools:</strong> Tableau, Power BI, MS Excel</p>
-      <p><strong>Cloud/Databases:</strong> SQL</p>
-      <p><strong>Skills:</strong> Deep Learning models,<br>Custom Layers, Data Manipulation,<br> GANs, Data Analysis, Data Cleaning, Data Collection, Data Visualization</p>
-      <p><strong>Areas of Interest:</strong> Computer Vision 3D & 2D, GANs, Diffusion Models, Vision Language Models</p>
-      <p><strong>Framework:</strong> Flask</p>
+    <div class="el-card" style="--c:var(--sage)" data-fly="scale" data-delay="4">
+      <span class="el-icon">📊</span>
+      <div class="el-name">Data Science</div>
+      <div class="el-items">Pandas · NumPy · Matplotlib · Seaborn · Scikit-learn · Tableau · Power BI</div>
     </div>
-  </section>
-
-  <!-- Certifications -->
-  <section id="certifications">
-    <h2>Certifications</h2>
-    <div id="certifications-grid" class="cert-grid"></div>
-  </section>
-
-  <!-- Education -->
-  <section id="education">
-    <h2>Education</h2>
-    <div class="education-item">
-      <h3>Ramkrishna Mission, Narendrapur, Kolkata</h3>
-      <p>MSc. Data Science and AI (2024-2026)</p>
-      <p>CGPA: - 7.93 (upto sem 2)</p>
+    <div class="el-card" style="--c:var(--amber)" data-fly="scale" data-delay="5">
+      <span class="el-icon">💻</span>
+      <div class="el-name">Languages</div>
+      <div class="el-items">Python · R · SQL · Flask</div>
     </div>
-    <div class="education-item">
-      <h3>Jadavpur University, Kolkata</h3>
-      <p>Cerificate Course AI and Data Science(May-Nov 2024)</p>
-      <p>Grade: A</p>
+    <div class="el-card" style="--c:var(--ice)" data-fly="scale" data-delay="6">
+      <span class="el-icon">💬</span>
+      <div class="el-name">NLP</div>
+      <div class="el-items">Natural Language Processing · Vision-Language Integration · LLMs</div>
     </div>
-    <div class="education-item">
-      <h3>University of Calcutta, Kolkata</h3>
-      <p>BSc. Computer Science (2021-2024)</p>
-      <p>CGPA: 7.76</p>
+  </div>
+</div>
+</div>
+
+<div class="divider" data-fly="up">
+  <div class="d-line"></div><div class="d-gem"></div><div class="d-line"></div>
+</div>
+
+<!-- CERTIFICATIONS -->
+<div id="certifications">
+<div class="section-wrap">
+  <div class="section-head">
+    <p class="s-label" data-fly="up" data-delay="1">Credentials</p>
+    <h2 class="s-title" data-fly="up" data-delay="2">Seals of Mastery</h2>
+    <p class="s-intro" data-fly="up" data-delay="3">Each certification is a testament to knowledge tested and wisdom earned. Scroll the cards below to browse them.</p>
+  </div>
+
+  <div class="nations-scroll" id="certScroll" data-fly="up" data-delay="4">
+    <div class="nation-card">
+      <div class="nation-name">🔮 GANs Specialization</div>
+      <div class="nation-text">Generative Adversarial Networks — build, train and apply GANs to produce realistic images.</div>
+      <div class="nation-meta">DeepLearning.AI · Oct 2025</div>
+      <div style="margin-top:.8rem"><a href="https://coursera.org/share/ec54b65d5908bddac6f27424b3bcbee0" target="_blank" rel="noreferrer" class="btn btn-ghost" style="font-size:.78rem;padding:.45rem 1.35rem;cursor:none">View ↗</a></div>
     </div>
-    <div class="education-item">
-      <h3>Nava Nalanda High School</h3>
-      <p>West Bengal Board of Higher Secondary Education (2020)</p>
-      <p>Percentage: 89.88%</p>
+    <div class="nation-card">
+      <div class="nation-name">⚡ TF Advanced Techniques</div>
+      <div class="nation-text">Custom models, layers, loss functions, and advanced TensorFlow deployment strategies.</div>
+      <div class="nation-meta">DeepLearning.AI · Mar 2025</div>
+      <div style="margin-top:.8rem"><a href="https://coursera.org/share/53bca3964224b6f269a88551fb7e86d0" target="_blank" rel="noreferrer" class="btn btn-ghost" style="font-size:.78rem;padding:.45rem 1.35rem;cursor:none">View ↗</a></div>
     </div>
-  </section>
-
-  <!-- Ongoing Works -->
-  <section id="ongoing-works">
-    <h2>Ongoing Works</h2>
-    <ul class="works-list">
-      <li>
-        Development of 3 research publication on gene selection and classification collaboration<br>with 
-        <strong>Dr.(Prof.) Manan Kumar Gupta, Brainware University, Kolkata</strong>
-        <span class="status-tag ongoing">Ongoing</span>
-      </li>
-      <li>
-        Development of 2 research publication: A lightweight approach for plant disease classification and 
-        image segmentation under the supervision of
-        <div class="supervisors">
-          <span><strong>Dr. (Prof.) Mahantapas Kundu</strong></span>
-          <span><strong>Dr. (Prof.)Ram Sarkar, Jadavpur University</strong></span>
-        </div>
-        <span class="status-tag ongoing">Ongoing</span>
-      </li>
-    </ul>
-  </section>
-
-  <!-- Experience -->
-  <section id="experience">
-    <h2>Experience</h2>
-    <!-- (content unchanged, currently commented out) -->
-  </section>
-
-  <!-- Research -->
-  <section id="research-papers">
-    <h2>Research Papers</h2>
-    <div id="research-grid" class="research-grid"></div>
-  </section>
-
-  <!-- Reviews -->
-  <section id="reviews">
-    <h2>Reviews</h2>
-    <div id="reviews-grid" class="reviews-grid"></div>
-  </section>
-
-  <!-- Projects -->
-  <section id="projects">
-    <h2>Projects</h2>
-    <div id="projects-grid" class="website-grid"></div>
-    <p class="note">
-      <em>Note: ---.</em>
-    </p>
-  </section>
-
-  <!-- Contact -->
-  <section id="contact">
-    <h2>Contact</h2>
-    <p>
-      Feel free to contact me for any questions and collaborations.  
-      For open source projects, please open an issue or pull request on Github.  
-      If you want to follow my work, reach me out on Twitter and Github.  
-      Otherwise, send me an email at <strong>saswata.work.data@gmail.com</strong>.
-    </p>
-    <div>
-      <a href="https://github.com/saswata-maity" class="btn" target="_blank">GITHUB</a>
-      <a href="#" class="btn" target="_blank">TWITTER</a>
-      <a href="mailto:saswata.work.data@gmail.com" class="btn">MAIL</a>
+    <div class="nation-card">
+      <div class="nation-name">🎓 TensorFlow Developer</div>
+      <div class="nation-text">Professional certification in building and deploying production ML models with TensorFlow.</div>
+      <div class="nation-meta">DeepLearning.AI · Mar 2025</div>
+      <div style="margin-top:.8rem"><a href="https://coursera.org/share/b67546723ee35958347a919f7dd768ec" target="_blank" rel="noreferrer" class="btn btn-ghost" style="font-size:.78rem;padding:.45rem 1.35rem;cursor:none">View ↗</a></div>
     </div>
-    <div id="map"></div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="social-icons-footer">
-      <a href="#"><i class="fab fa-twitter"></i></a>
-      <a href="https://github.com/saswata-maity" target="_blank"><i class="fab fa-github"></i></a>
-      <a href="https://linkedin.com/in/saswata-maity" target="_blank"><i class="fab fa-linkedin"></i></a>
+    <div class="nation-card">
+      <div class="nation-name">🧠 Deep Learning</div>
+      <div class="nation-text">Five-course specialization covering neural networks, optimization, and ML project structuring.</div>
+      <div class="nation-meta">DeepLearning.AI · Feb 2025</div>
+      <div style="margin-top:.8rem"><a href="https://coursera.org/share/bf183daa93e360a34bcaf1c8399586df" target="_blank" rel="noreferrer" class="btn btn-ghost" style="font-size:.78rem;padding:.45rem 1.35rem;cursor:none">View ↗</a></div>
     </div>
-    <p class="footer-text">Copyright © Saswata Maity 2024</p>
-    <p class="footer-text">
-      <a href="#">Privacy Policy</a> | <a href="#">Terms of Use</a>
-    </p>
-  </footer>
+    <div class="nation-card">
+      <div class="nation-name">🏛 AI & Data Science</div>
+      <div class="nation-text">Certificate course in applied AI and data science from Jadavpur University, Kolkata.</div>
+      <div class="nation-meta">Jadavpur University · 2024</div>
+      <div style="margin-top:.8rem"><a href="https://drive.google.com/file/d/1g5Xpwro1Xbiv39kKtVewOk6lkTrY-edN/view?usp=sharing" target="_blank" rel="noreferrer" class="btn btn-ghost" style="font-size:.78rem;padding:.45rem 1.35rem;cursor:none">View ↗</a></div>
+    </div>
+    <div class="nation-card">
+      <div class="nation-name">💬 NLP Specialization</div>
+      <div class="nation-text">Natural language processing from attention mechanisms to transformers and sequence models.</div>
+      <div class="nation-meta">DeepLearning.AI · Sep 2024</div>
+      <div style="margin-top:.8rem"><a href="https://coursera.org/share/299cee37e5651ac14166fdca3dfba271" target="_blank" rel="noreferrer" class="btn btn-ghost" style="font-size:.78rem;padding:.45rem 1.35rem;cursor:none">View ↗</a></div>
+    </div>
+    <div class="nation-card">
+      <div class="nation-name">📐 Machine Learning</div>
+      <div class="nation-text">Supervised, unsupervised learning and best practices from Stanford & DeepLearning.AI.</div>
+      <div class="nation-meta">Coursera · Apr 2024</div>
+      <div style="margin-top:.8rem"><a href="https://coursera.org/share/7cbe07f39b3058ce14938bf56e53449d" target="_blank" rel="noreferrer" class="btn btn-ghost" style="font-size:.78rem;padding:.45rem 1.35rem;cursor:none">View ↗</a></div>
+    </div>
+    <div class="nation-card">
+      <div class="nation-name">🗄 SQL Top 50 Badge</div>
+      <div class="nation-text">Solved LeetCode's top 50 SQL challenges — query design, joins, subqueries and window functions.</div>
+      <div class="nation-meta">LeetCode · Apr 2024</div>
+      <div style="margin-top:.8rem"><a href="https://leetcode.com/medal/?showImg=0&id=3182394&isLevel=false" target="_blank" rel="noreferrer" class="btn btn-ghost" style="font-size:.78rem;padding:.45rem 1.35rem;cursor:none">View ↗</a></div>
+    </div>
+    <div class="nation-card">
+      <div class="nation-name">🗄 SQL Intermediate</div>
+      <div class="nation-text">Intermediate SQL certification covering complex queries and database manipulation.</div>
+      <div class="nation-meta">HackerRank · Sep 2023</div>
+      <div style="margin-top:.8rem"><a href="https://www.hackerrank.com/certificates/fec12e2f45e5" target="_blank" rel="noreferrer" class="btn btn-ghost" style="font-size:.78rem;padding:.45rem 1.35rem;cursor:none">View ↗</a></div>
+    </div>
+    <div class="nation-card">
+      <div class="nation-name">📊 Google Data Analytics</div>
+      <div class="nation-text">End-to-end data analytics workflow — collection, cleaning, visualisation and insight generation.</div>
+      <div class="nation-meta">Google · Coursera · Nov 2023</div>
+      <div style="margin-top:.8rem"><a href="https://coursera.org/share/2bfddd8df47a60e1fe600e07e707e2eb" target="_blank" rel="noreferrer" class="btn btn-ghost" style="font-size:.78rem;padding:.45rem 1.35rem;cursor:none">View ↗</a></div>
+    </div>
+    <div class="nation-card">
+      <div class="nation-name">🐍 Google IT Python</div>
+      <div class="nation-text">Crash course on Python for IT automation — scripting, data structures, and object-oriented programming.</div>
+      <div class="nation-meta">Google · Coursera · Jun 2023</div>
+      <div style="margin-top:.8rem"><a href="https://coursera.org/share/7c205309f91a772e9eb30045ebfa8197" target="_blank" rel="noreferrer" class="btn btn-ghost" style="font-size:.78rem;padding:.45rem 1.35rem;cursor:none">View ↗</a></div>
+    </div>
+  </div>
+</div>
+</div>
 
-  <!-- External JS -->
-<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+<!-- EDUCATION -->
+<div id="education">
+<div class="section-wrap">
+  <div class="section-head">
+    <p class="s-label" data-fly="up" data-delay="1">Academic Lineage</p>
+    <h2 class="s-title" data-fly="up" data-delay="2">The Path of the Scholar</h2>
+    <p class="s-intro" data-fly="up" data-delay="3">From the halls of Calcutta to the frontier of AI research — every institution a chapter in an unfolding chronicle.</p>
+  </div>
+  <div class="lore-grid">
+    <div class="lore-card" data-fly="scale" data-delay="1">
+      <div class="lore-big">I</div>
+      <div class="lore-icon">🏛</div>
+      <div class="lore-title">MSc. Data Science & AI</div>
+      <div class="lore-text">Ramkrishna Mission, Narendrapur, Kolkata. Pursuing advanced studies at the intersection of data science and artificial intelligence.</div>
+      <div class="lore-meta">2024–2026 · CGPA: 7.93</div>
+    </div>
+    <div class="lore-card" data-fly="scale" data-delay="2">
+      <div class="lore-big">II</div>
+      <div class="lore-icon">⚗️</div>
+      <div class="lore-title">Certificate in AI & Data Science</div>
+      <div class="lore-text">Jadavpur University, Kolkata. Intensive certificate programme in applied artificial intelligence and modern data science techniques.</div>
+      <div class="lore-meta">May–Nov 2024 · Grade: A</div>
+    </div>
+    <div class="lore-card" data-fly="scale" data-delay="3">
+      <div class="lore-big">III</div>
+      <div class="lore-icon">📚</div>
+      <div class="lore-title">BSc. Computer Science</div>
+      <div class="lore-text">University of Calcutta, Kolkata. Foundational studies building the rigorous logical and mathematical framework for all future research.</div>
+      <div class="lore-meta">2021–2024 · CGPA: 7.76</div>
+    </div>
+    <div class="lore-card" data-fly="scale" data-delay="4">
+      <div class="lore-big">IV</div>
+      <div class="lore-icon">🌱</div>
+      <div class="lore-title">Higher Secondary Education</div>
+      <div class="lore-text">Nava Nalanda High School. West Bengal Board of Higher Secondary Education, where the journey into science began.</div>
+      <div class="lore-meta">2020 · Percentage: 89.88%</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="divider" data-fly="up">
+  <div class="d-line"></div><div class="d-gem"></div><div class="d-line"></div>
+</div>
+
+<!-- EXPERIENCE -->
+<div id="experience">
+<div class="section-wrap">
+  <div class="section-head">
+    <p class="s-label" data-fly="up" data-delay="1">Field Chronicle</p>
+    <h2 class="s-title" data-fly="up" data-delay="2">Experience in the Realm</h2>
+    <p class="s-intro" data-fly="up" data-delay="3">Beyond the lecture halls, knowledge tested in the forge of real-world research and development.</p>
+  </div>
+  <div class="lore-card" data-fly="up" data-delay="1" style="max-width:680px">
+    <div class="lore-big">R</div>
+    <div class="lore-icon">🔬</div>
+    <div class="lore-title">Research & Development Intern <span class="status-ongoing">Ongoing</span></div>
+    <div class="lore-text">Working on an AI system for early detection of cervical cancer at the Indian Institute of Technology, Ropar. Building and training deep learning models in PyTorch to automate diagnostic processes and improve healthcare outcomes.</div>
+    <div class="lore-meta">IIT Ropar · From January 2026 · Supervisor: Dr. Sukrit Gupta</div>
+    <span class="lore-tag">Medical AI</span>
+    <span class="lore-tag" style="margin-left:.4rem">PyTorch</span>
+    <span class="lore-tag" style="margin-left:.4rem">Computer Vision</span>
+  </div>
+</div>
+</div>
+
+<!-- RESEARCH -->
+<div id="research">
+<div class="section-wrap">
+  <div class="section-head">
+    <p class="s-label" data-fly="up" data-delay="1">The Scholar's Works</p>
+    <h2 class="s-title" data-fly="up" data-delay="2">Research & Publications</h2>
+    <p class="s-intro" data-fly="up" data-delay="3">Contributions to the great library — published works and ongoing investigations at the edge of what is known.</p>
+  </div>
+  <div class="tab-bar" data-fly="up" data-delay="4">
+    <button class="tab-btn active" data-tab="ongoing">Ongoing Works</button>
+    <button class="tab-btn" data-tab="published">Publications</button>
+    <button class="tab-btn" data-tab="reviews">Peer Reviews</button>
+  </div>
+
+  <div class="tab-panel active" id="tab-ongoing">
+    <div class="lore-grid">
+      <div class="lore-card">
+        <div class="lore-big">Ψ</div>
+        <div class="lore-icon">🧬</div>
+        <div class="lore-title">Gene Selection & Classification <span class="status-ongoing">Ongoing</span></div>
+        <div class="lore-text">Development of 3 research publications on gene selection and classification in collaboration with Dr. (Prof.) Manan Kumar Gupta, Brainware University, Kolkata.</div>
+        <span class="lore-tag">Bioinformatics</span>
+        <span class="lore-tag" style="margin-left:.4rem">Deep Learning</span>
+      </div>
+      <div class="lore-card">
+        <div class="lore-big">Φ</div>
+        <div class="lore-icon">🌿</div>
+        <div class="lore-title">Plant Disease Classification <span class="lore-tag" style="margin-left:.4rem;border-color:var(--sage);color:var(--sage)">Submitted</span></div>
+        <div class="lore-text">Lightweight approach for plant disease classification. Paper submitted. Supervised by Dr. (Prof.) Mahantapas Kundu and Dr. (Prof.) Ram Sarkar, Jadavpur University.</div>
+        <span class="lore-tag">TensorFlow</span>
+        <span class="lore-tag" style="margin-left:.4rem">Lightweight Models</span>
+      </div>
+      <div class="lore-card">
+        <div class="lore-big">Σ</div>
+        <div class="lore-icon">🔬</div>
+        <div class="lore-title">H&E Image Segmentation <span class="status-ongoing">Ongoing</span></div>
+        <div class="lore-text">Image segmentation on H&E stained images. Results accumulated — paper writing in progress. Supervised by Dr. (Prof.) Mahantapas Kundu and Dr. (Prof.) Ram Sarkar, Jadavpur University.</div>
+        <span class="lore-tag">Segmentation</span>
+        <span class="lore-tag" style="margin-left:.4rem">Histopathology</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="tab-published">
+    <div class="lore-card">
+      <div class="lore-big">📜</div>
+      <div class="lore-icon">✦</div>
+      <div class="lore-title">Published Research</div>
+      <div class="lore-text">Research publications and conference papers will appear here as they are formally published. The chronicles grow with each completed investigation. Check Google Scholar or GitHub for the most current list of works.</div>
+      <div class="lore-meta">saswata.work.data@gmail.com for collaboration inquiries</div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="tab-reviews">
+    <div class="lore-card">
+      <div class="lore-big">✦</div>
+      <div class="lore-icon">🏅</div>
+      <div class="lore-title">Peer Review Contributions</div>
+      <div class="lore-text">As an active member of the research community, contributions as a reviewer help uphold the integrity of scientific publication. Details of review activities maintained in accordance with journal confidentiality.</div>
+      <div class="lore-meta">Journals & Conferences · AI / Computer Vision Domain</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="divider" data-fly="up">
+  <div class="d-line"></div><div class="d-gem"></div><div class="d-line"></div>
+</div>
+
+<!-- PROJECTS -->
+<div id="projects">
+<div class="section-wrap">
+  <div class="section-head">
+    <p class="s-label" data-fly="up" data-delay="1">Constructed Artifacts</p>
+    <h2 class="s-title" data-fly="up" data-delay="2">The Workshop</h2>
+    <p class="s-intro" data-fly="up" data-delay="3">Each project a vessel — carrying ideas from theory into the tangible world, where code meets consequence.</p>
+  </div>
+  <div class="proj-grid">
+    <div class="proj-card" data-fly="scale" data-delay="1">
+      <div class="proj-num">01</div>
+      <div class="proj-icon">🔬</div>
+      <div class="proj-title">MoNuSeg Histopathology WSI Segmentation</div>
+      <div class="proj-text">A lightweight U-Net framework designed with separable CNNs, achieving an IoU score of 0.5444 and a Dice score of 0.705 on the MoNuSeg 2018 test data.</div>
+      <div class="proj-tags"><span class="proj-tag">Segmentation</span><span class="proj-tag">U-Net</span><span class="proj-tag">Separable CNN</span></div>
+      <div style="margin-top:1.2rem"><a href="https://github.com/Saswata-Maity/Image_segmentayion_MoNuSeg/blob/main/version1.ipynb" target="_blank" rel="noreferrer" class="btn btn-ghost" style="font-size:.58rem;padding:.5rem 1.2rem;cursor:none">View Project ↗</a></div>
+    </div>
+    <div class="proj-card" data-fly="scale" data-delay="2">
+      <div class="proj-num">02</div>
+      <div class="proj-icon">❤️</div>
+      <div class="proj-title">Heart Attack Prediction App</div>
+      <div class="proj-text">Web app developed using a Kaggle dataset to determine if a person has a high or low chance of heart attack.</div>
+      <div class="proj-tags"><span class="proj-tag">Flask</span><span class="proj-tag">Medical AI</span><span class="proj-tag">Web App</span></div>
+      <div style="margin-top:1.2rem"><a href="https://heartattackpred-webapp.onrender.com/" target="_blank" rel="noreferrer" class="btn btn-ghost" style="font-size:.58rem;padding:.5rem 1.2rem;cursor:none">View Project ↗</a></div>
+    </div>
+    <div class="proj-card" data-fly="scale" data-delay="3">
+      <div class="proj-num">03</div>
+      <div class="proj-icon">🌿</div>
+      <div class="proj-title">Crop Disease Prediction</div>
+      <div class="proj-text">Web app to classify plant disease type with 99.01% accuracy and 98.65% confidence.</div>
+      <div class="proj-tags"><span class="proj-tag">Classification</span><span class="proj-tag">99.01% Acc</span><span class="proj-tag">Web App</span></div>
+      <div style="margin-top:1.2rem"><a href="https://github.com/Saswata-Maity/crop_disease_pred/blob/main/crop_jupyter_source.ipynb" target="_blank" rel="noreferrer" class="btn btn-ghost" style="font-size:.58rem;padding:.5rem 1.2rem;cursor:none">View Project ↗</a></div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="divider" data-fly="up">
+  <div class="d-line"></div><div class="d-gem"></div><div class="d-line"></div>
+</div>
+
+<!-- HOBBIES -->
+<div id="hobbies">
+<div class="section-wrap">
+  <div class="section-head">
+    <p class="s-label" data-fly="up" data-delay="1">Beyond the Laboratory</p>
+    <h2 class="s-title" data-fly="up" data-delay="2">The Scholar at Rest</h2>
+    <p class="s-intro" data-fly="up" data-delay="3">A mind that never stops — when not training models, exploring the worlds of art, story, and adventure.</p>
+  </div>
+  <div class="hobby-grid">
+    <div class="hobby-card" style="--hc:var(--coral)" data-fly="scale" data-delay="1">
+      <div class="hobby-big">一</div>
+      <span class="hobby-glyph">⛩</span>
+      <div class="hobby-title">Anime</div>
+      <div class="hobby-text">A devoted follower of anime — drawn to series that weave intricate lore, compelling characters, and visual storytelling that no other medium can replicate.</div>
+    </div>
+    <div class="hobby-card" style="--hc:var(--violet)" data-fly="scale" data-delay="2">
+      <div class="hobby-big">✦</div>
+      <span class="hobby-glyph">🎨</span>
+      <div class="hobby-title">Illustration</div>
+      <div class="hobby-text">Sketching and digital illustration as a meditative counterpoint to code — translating the abstract into the visual, one line at a time.</div>
+    </div>
+    <div class="hobby-card" style="--hc:var(--amber)" data-fly="scale" data-delay="3">
+      <div class="hobby-big">⚔</div>
+      <span class="hobby-glyph">🎮</span>
+      <div class="hobby-title">RPG Games</div>
+      <div class="hobby-text">Lost in sprawling role-playing worlds where every decision carries weight — systems thinking and narrative exploration, the same instincts that drive research.</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="divider" data-fly="up">
+  <div class="d-line"></div><div class="d-gem"></div><div class="d-line"></div>
+</div>
+
+<!-- CONTACT -->
+<div id="contact">
+<div class="section-wrap">
+  <div class="section-head">
+    <p class="s-label" data-fly="up" data-delay="1">Send a Missive</p>
+    <h2 class="s-title" data-fly="up" data-delay="2">Open to Collaboration</h2>
+    <p class="s-intro" data-fly="up" data-delay="3">Whether you carry a research proposal, an open-source endeavour, or simply a question — the scholar's door is open.</p>
+  </div>
+  <div class="contact-grid">
+    <div class="lore-card" data-fly="left" data-delay="1">
+      <div class="lore-big">@</div>
+      <div class="lore-icon">✉️</div>
+      <div class="lore-title">Electronic Correspondence</div>
+      <div class="lore-text">For research collaborations, open-source proposals, or any inquiry related to computer vision and AI.</div>
+      <div class="lore-meta">saswata.work.data@gmail.com</div>
+    </div>
+    <div class="lore-card" data-fly="right" data-delay="1">
+      <div class="lore-big">⚡</div>
+      <div class="lore-icon">🌐</div>
+      <div class="lore-title">Digital Presence</div>
+      <div class="lore-text">Follow ongoing work, open issues, and contribute to projects through the networks below.</div>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.25rem">
+        <a href="https://github.com/saswata-maity" target="_blank" rel="noreferrer" class="btn btn-ghost" style="font-size:.6rem;padding:.6rem 1.4rem;cursor:none">GitHub</a>
+        <a href="https://linkedin.com/in/saswata-maity" target="_blank" rel="noreferrer" class="btn btn-ghost" style="font-size:.6rem;padding:.6rem 1.4rem;cursor:none">LinkedIn</a>
+        <a href="https://x.com/" target="_blank" rel="noreferrer" class="btn btn-ghost" style="font-size:.6rem;padding:.6rem 1.4rem;cursor:none">Twitter</a>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div data-fly="up">
+    <div class="f-logo">✦ Saswata Maity</div>
+    <div class="f-socials">
+      <a href="https://github.com/saswata-maity" target="_blank" rel="noreferrer">GitHub</a>
+      <a href="https://linkedin.com/in/saswata-maity" target="_blank" rel="noreferrer">LinkedIn</a>
+      <a href="mailto:saswata.work.data@gmail.com">Email</a>
+      <a href="https://x.com/" target="_blank" rel="noreferrer">Twitter</a>
+    </div>
+    <p>Computer Vision Researcher · MSc Data Science & AI · IIT Ropar Intern</p>
+    <p style="margin-top:.5rem">Copyright © Saswata Maity 2024 · All elements are in motion</p>
+  </div>
+</footer>
+
 <script src="script.js"></script>
-
-<!-- Only initialize CNN background on #home -->
-<script>
-  if (document.getElementById('home')) {
-    const script = document.createElement('script');
-    script.src = 'homepage-cnn.js';
-    document.body.appendChild(script);
-  }
-</script>
-
 </body>
 </html>
